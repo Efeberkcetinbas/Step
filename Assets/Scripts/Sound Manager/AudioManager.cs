@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         //Arka plan müziği
-        //Play("Theme");
+        Play("Theme");
     }
 
     public void Play(string name)

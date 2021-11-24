@@ -17,14 +17,25 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private Button redo;
 
-    [SerializeField]
+
+    /// <summary>
+    /// findobjectoftype yapısıyla dontdestroyonloadta null reference exception hatası alınması engellendi.
+    /// </summary>
+
+    //[SerializeField]
     private CharacterMove character;
-    [SerializeField]
+    //[SerializeField]
     private CharacterMoveUndo characterUndo;
     [SerializeField]
     UICommandList uiCommandList;
     [SerializeField]
     CharacterMoveClean characterCleanMove;
+
+    private void Awake()
+    {
+        character = FindObjectOfType<CharacterMove>();
+        characterUndo = FindObjectOfType<CharacterMoveUndo>();
+    }
 
     private void OnEnable()
     {

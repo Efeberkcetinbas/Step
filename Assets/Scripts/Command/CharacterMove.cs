@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CharacterMove : MonoBehaviour
 {
+    [SerializeField] private float y_axis;
+
     [SerializeField]
     private List<Move> commandList = new List<Move>();
     private int index;
@@ -14,6 +16,11 @@ public class CharacterMove : MonoBehaviour
 
     #region path drawing
     //path drawing
+
+    private void Awake()
+    {
+        gameObject.transform.DOMoveY(y_axis, 1f);
+    }
 
     private void Start()
     {
@@ -36,9 +43,18 @@ public class CharacterMove : MonoBehaviour
 
         //Doscale işe yarıyor.
         gameObject.transform.DOScaleY(.6f, 0f).OnComplete(() => gameObject.transform.DOScaleY(.5f, .2f));
+        StartCoroutine(doKill(1));
 
         //Ses ekleme.
         FindObjectOfType<AudioManager>().Play("Jump");
+
+    }
+
+    private IEnumerator doKill(float time)
+    {
+        yield return new WaitForSeconds(time);
+        //gameObject.transform.DOKill();
+        //Debug.Log("WASD");
 
     }
 
@@ -84,4 +100,5 @@ public class CharacterMove : MonoBehaviour
 
         pathDrawer.UpdateLine(positions);
     }
+
 }
