@@ -38,7 +38,20 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         //Arka plan müziği
-        //Play("Theme");
+        Play("Theme");
+    }
+
+    public void Stop(string name)
+    {
+        Sounds s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Sound : " + name + "not found!");
+            return;
+        }
+
+        s.source.Stop();
     }
 
     public void Play(string name)

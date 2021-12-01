@@ -12,19 +12,30 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private Button right;
 
-    [SerializeField]
+   /* [SerializeField]
     private Button undo;
     [SerializeField]
-    private Button redo;
+    private Button redo;*/
 
-    [SerializeField]
+
+    /// <summary>
+    /// findobjectoftype yapısıyla dontdestroyonloadta null reference exception hatası alınması engellendi.
+    /// </summary>
+
+    //[SerializeField]
     private CharacterMove character;
-    [SerializeField]
+    //[SerializeField]
     private CharacterMoveUndo characterUndo;
     [SerializeField]
     UICommandList uiCommandList;
     [SerializeField]
     CharacterMoveClean characterCleanMove;
+
+    private void Awake()
+    {
+        character = FindObjectOfType<CharacterMove>();
+        characterUndo = FindObjectOfType<CharacterMoveUndo>();
+    }
 
     private void OnEnable()
     {
@@ -33,8 +44,8 @@ public class InputManager : MonoBehaviour
         left?.onClick.AddListener(() => SendMoveCommand(character.transform, Vector3.left, 1f));
         right?.onClick.AddListener(() => SendMoveCommand(character.transform, Vector3.right, 1f));
 
-        undo?.onClick.AddListener(() => character.UndoCommand());
-        redo?.onClick.AddListener(() => character.RedoCommand());
+        /*undo?.onClick.AddListener(() => character.UndoCommand());
+        redo?.onClick.AddListener(() => character.RedoCommand());*/
     }
 
     private void SendMoveCommand(Transform objectToMove, Vector3 direction, float distance)

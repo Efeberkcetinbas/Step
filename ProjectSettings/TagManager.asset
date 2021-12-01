@@ -6,6 +6,11 @@ TagManager:
   tags:
   - green
   - red
+  - startPosition
+  - Portal
+  - MoveY
+  - MoveX
+  - MoveZ
   layers:
   - Default
   - TransparentFX

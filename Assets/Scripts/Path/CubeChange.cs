@@ -15,12 +15,11 @@ public class CubeChange : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player");
 
             if (is_Green)
-                mr.material.DOColor(Color.green, 0.2f);
+                mr.material.DOColor(Color.green, 0f);
             else
-                mr.material.DOColor(Color.red, 0.2f);
+                mr.material.DOColor(Color.red, 0f);
         }
     }
 }
