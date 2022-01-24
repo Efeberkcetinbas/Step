@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class FailedManager : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class FailedManager : MonoBehaviour
     public void open_Failed_Panel()
     {
         StartCoroutine(Open_Failed(.1f));
+        //Bu sayede diğer kodlardaki tweenlerde null hatasını önlüyorum.
+        DOTween.KillAll();
+        Debug.Log("Opened Failed");
     }
 
     /// <summary>

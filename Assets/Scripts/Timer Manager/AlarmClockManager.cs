@@ -4,12 +4,17 @@ using UnityEngine.UI;
 
 public class AlarmClockManager : MonoBehaviour
 {
+    [SerializeField]
+    private Text time_text;
 
-    public Text time_text;
+
+    //Timerları textMesh yaptığın zaman bu yapıyı kullan.
+    /*[SerializeField]
+    private TextMeshProUGUI time_textMesh;*/
 
     private float timer;
 
-    [SerializeField] private int timer_int;
+    public int timer_int;
 
 
 
@@ -31,14 +36,12 @@ public class AlarmClockManager : MonoBehaviour
             else
             {
                 Timer_Reset();
-                Debug.Log("Time's UP!!!!!!");
-                //FindObjectOfType<FailedManager>().open_Failed_Panel();
             }
         }
-
-        
     }
 
+
+    //Sadece zaman akışı kod.
     void Timer_CountDown()
     {
         timer -= Time.deltaTime;

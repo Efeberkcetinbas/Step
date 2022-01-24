@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CongManager : MonoBehaviour
 {
@@ -43,5 +43,8 @@ public class CongManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
         cong_Panel.SetActive(true);
+
+        //2.12.2021 Eklendi.
+        DOTween.KillAll();
     }
 }

@@ -16,15 +16,15 @@ public class ObstacleMovement : MonoBehaviour
     [SerializeField]
     private Ease setEase;
 
-    private static ObstacleMovement instance { get; set; }
+    //private static ObstacleMovement instance { get; set; }
     //1.12.2021
     //Fakat singleton pattern kullandığım için tek bir obje oluşturuyorum. Yani obstacle movement koduna sahip sadece 1 objem sahnede olabiliyor. 
 
     private void Start()
     {
-
+        Movement_Loop();
         //DontDestroyOnLoad sayesinde null hatası almıyorum. Check ettiğim için.
-        DontDestroyOnLoad(gameObject);
+        /*DontDestroyOnLoad(gameObject);
 
         if (instance == null)
         {
@@ -35,7 +35,7 @@ public class ObstacleMovement : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
+        }*/
 
     }
 
@@ -47,12 +47,12 @@ public class ObstacleMovement : MonoBehaviour
             .SetLoops(-1, LoopType.Yoyo);
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             DOTween.Kill(transform);
             Debug.Log("Player'a çarptık");
         }
-    }
+    }*/
 }

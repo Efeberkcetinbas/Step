@@ -11,6 +11,7 @@ TagManager:
   - MoveY
   - MoveX
   - MoveZ
+  - start
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,8 @@ public class CharacterMove : MonoBehaviour
 {
     [SerializeField] private float y_axis;
 
+    [SerializeField] private float left_rotate, right_rotate, up_rotate, down_rotate;
+
     [SerializeField]
     private List<Move> commandList = new List<Move>();
     private int index;
@@ -17,6 +19,8 @@ public class CharacterMove : MonoBehaviour
     #region path drawing
     //path drawing
 
+    private InputManager _input;
+
     private void Awake()
     {
         gameObject.transform.DOMoveY(y_axis, 1f);
@@ -24,6 +28,7 @@ public class CharacterMove : MonoBehaviour
 
     private void Start()
     {
+        _input = FindObjectOfType<InputManager>();
         startPoint = this.transform.position;
         startPoint.y = verticalOffset;
         pathDrawer = this.GetComponent<PathDraw>();
@@ -43,6 +48,21 @@ public class CharacterMove : MonoBehaviour
 
         //Doscale işe yarıyor.
         gameObject.transform.DOScaleY(.6f, 0f).OnComplete(() => gameObject.transform.DOScaleY(.5f, .2f));
+
+        //sadece komut aldığımda kontrol ediyorum. Bu sayede maxTweens hatası olmuyor.
+        //24.01.2021 Bundan sonra dotweenleri update'de kontrol etme.
+
+        if (_input.is_Left == true)
+            gameObject.transform.DORotate(new Vector3(0, left_rotate, 0), 0.2f);
+
+        else if (_input.isRight == true)
+            gameObject.transform.DORotate(new Vector3(0, right_rotate, 0), 0.2f);
+
+        else if (_input.is_Up == true)
+            gameObject.transform.DORotate(new Vector3(0, up_rotate, 0), 0.2f);
+
+        else if (_input.is_Down == true)
+            gameObject.transform.DORotate(new Vector3(0, down_rotate, 0), 0.2f);
         StartCoroutine(doKill(1));
 
         //Ses ekleme.

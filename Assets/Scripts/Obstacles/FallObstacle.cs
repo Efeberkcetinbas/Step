@@ -9,6 +9,10 @@ public class FallObstacle : MonoBehaviour
     private GameObject red;
 
 
+
+    [SerializeField]
+    private float falling_time = 2f;
+
     void Start()
     {
         red.SetActive(false);
@@ -18,7 +22,7 @@ public class FallObstacle : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(fall_Time(2));
+            StartCoroutine(fall_Time(falling_time));
         }
     }
 

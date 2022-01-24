@@ -11,4 +11,6 @@ public class LightsClosing : MonoBehaviour
         gameObject.GetComponent<Image>().DOFade(1f, turn_dark_speed);
     }
 
+    
+
 }
